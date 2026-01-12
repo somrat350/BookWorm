@@ -96,12 +96,9 @@ export default function Header() {
       <NavLink className="navLink" href="/">
         Home
       </NavLink>
-      <NavLink className="navLink" href="/donationRequests">
-        Donation Requests
+      <NavLink className="navLink" href="/books">
+        Books
       </NavLink>
-      <Link className="navLink" href="/dashboard/newDonationRequest">
-        New Donation Requests
-      </Link>
       {user && (
         <>
           <NavLink className="navLink" href="/funding">
