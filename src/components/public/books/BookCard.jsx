@@ -4,7 +4,7 @@ import { FaHeart, FaStar } from "react-icons/fa";
 export const BookCard = ({ book }) => {
   return (
     <div
-      key={book.id}
+      key={book._id}
       className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
     >
       <figure className="px-4 pt-4">
@@ -38,7 +38,7 @@ export const BookCard = ({ book }) => {
 
         <div className="card-actions justify-between items-center mt-4">
           <Link
-            href={`/book/${book.id}`}
+            href={`/books/${book._id}`}
             className="flex-1 btn btn-secondary btn-sm"
           >
             View Details

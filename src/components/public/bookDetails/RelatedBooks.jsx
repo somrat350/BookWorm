@@ -10,7 +10,7 @@ export default function RelatedBooks({ books, currentBook }) {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {books.slice(0, 6).map((book) => (
-            <Link key={book.id} href={`/books/${book.id}`} className="group">
+            <Link key={book._id} href={`/books/${book._id}`} className="group">
               <div className="card bg-base-200 shadow-md hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
                 <figure className="px-4 pt-4">
                   <img

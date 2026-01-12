@@ -1,20 +1,42 @@
 "use server";
 
 import { BookCard } from "@/components/public/books/BookCard";
-import ClearFilters from "@/components/public/books/ClearFilters";
 import GenreFilter from "@/components/public/books/GenreFilter";
 import Pagination from "@/components/public/books/Pagination";
 import SearchBar from "@/components/public/books/SearchBar";
 import ShowAllBooks from "@/components/public/books/ShowAllBooks";
 import Sort from "@/components/public/books/Sort";
+import { dbConnect } from "@/lib/dbConnect";
+
+const booksCollection = await dbConnect("books");
+const fetchBooks = async (genre, page, searchTerm, sortBy) => {
+  const limit = 8;
+  const skip = (page - 1) * limit;
+  let query = {};
+
+  if (genre) {
+    query.genre = genre;
+  }
+
+  if (searchTerm) {
+    query.title = { $regex: searchTerm, $options: "i" };
+  }
+
+  const books = await booksCollection
+    .find(query)
+    .sort({ sortBy: 1 })
+    .skip(skip)
+    .limit(limit)
+    .toArray();
+
+  const totalBooks = await booksCollection.countDocuments(query);
+
+  return { books, totalBooks };
+};
 
 export default async function Books({ searchParams }) {
   const { genre, page, searchTerm, sort } = await searchParams;
-  const res = await fetch(
-    `http://localhost:3000/mock-books.json?page=${page}&limit=8&genre=${genre}&searchTerm=${searchTerm}&sort=${sort}`
-  );
-
-  const { books, totalBooks } = await res.json();
+  const { books, totalBooks } = await fetchBooks(genre, page, searchTerm, sort);
   const totalPages = Math.ceil(totalBooks / 8);
   const currentPage = parseInt(page) || 1;
 
@@ -32,7 +54,7 @@ export default async function Books({ searchParams }) {
             <div className="stats stats-horizontal shadow-lg bg-base-100/80 backdrop-blur-sm mt-8">
               <div className="stat">
                 <div className="stat-title">Total Books</div>
-                <div className="stat-value text-primary">{books.length}</div>
+                <div className="stat-value text-primary">{totalBooks}</div>
               </div>
               <div className="stat">
                 <div className="stat-title">Genres</div>
@@ -64,7 +86,7 @@ export default async function Books({ searchParams }) {
           <>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {books.map((book) => (
-                <BookCard key={book.id} book={book} />
+                <BookCard key={book._id} book={book} />
               ))}
             </div>
             {totalPages > 1 && (

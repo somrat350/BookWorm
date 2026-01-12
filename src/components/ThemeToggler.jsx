@@ -1,19 +1,25 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 const ThemeToggler = () => {
-  const get = localStorage.getItem("bookWorm-theme");
-  const getTheme = JSON.parse(get ? get : "false");
-  const [theme, setTheme] = useState(getTheme);
+  // const get = localStorage.getItem("bookWorm-theme");
+  // const getTheme = JSON.parse(get ? get : "false");
+  const [theme, setTheme] = useState(true);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("bookWorm-theme");
+    if (stored !== null) {
+      setTheme(JSON.parse(stored));
+    }
+  }, []);
 
   useEffect(() => {
     document
       .querySelector("html")
       .setAttribute("data-theme", theme ? "dark" : "light");
-    localStorage.setItem(
-      "bookWorm-theme",
-      JSON.stringify(theme)
-    );
+    localStorage.setItem("bookWorm-theme", JSON.stringify(theme));
   }, [theme]);
   return (
     // <button

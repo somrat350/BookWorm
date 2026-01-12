@@ -1,7 +1,6 @@
 {
   "books": [
     {
-      "id": 1,
       "title": "The Midnight Library",
       "author": "Matt Haig",
       "rating": 4.8,
@@ -35,7 +34,6 @@
       ]
     },
     {
-      "id": 2,
       "title": "Atomic Habits",
       "author": "James Clear",
       "rating": 4.9,
@@ -69,7 +67,6 @@
       ]
     },
     {
-      "id": 3,
       "title": "The Seven Husbands of Evelyn Hugo",
       "author": "Taylor Jenkins Reid",
       "rating": 4.7,
@@ -97,7 +94,6 @@
       ]
     },
     {
-      "id": 4,
       "title": "Dune",
       "author": "Frank Herbert",
       "rating": 4.8,
@@ -135,7 +131,6 @@
       ]
     },
     {
-      "id": 5,
       "title": "The Silent Patient",
       "author": "Alex Michaelides",
       "rating": 4.5,
@@ -170,7 +165,6 @@
       ]
     },
     {
-      "id": 6,
       "title": "Educated",
       "author": "Tara Westover",
       "rating": 4.8,
@@ -208,7 +202,6 @@
       ]
     },
     {
-      "id": 7,
       "title": "Project Hail Mary",
       "author": "Andy Weir",
       "rating": 4.9,
@@ -246,7 +239,6 @@
       ]
     },
     {
-      "id": 8,
       "title": "The Love Hypothesis",
       "author": "Ali Hazelwood",
       "rating": 4.4,
@@ -281,7 +273,6 @@
       ]
     },
     {
-      "id": 9,
       "title": "Sapiens: A Brief History of Humankind",
       "author": "Yuval Noah Harari",
       "rating": 4.7,
@@ -316,7 +307,6 @@
       ]
     },
     {
-      "id": 10,
       "title": "The Thursday Murder Club",
       "author": "Richard Osman",
       "rating": 4.6,
@@ -351,7 +341,6 @@
       ]
     },
     {
-      "id": 11,
       "title": "The Alchemist",
       "author": "Paulo Coelho",
       "rating": 4.5,
@@ -386,7 +375,6 @@
       ]
     },
     {
-      "id": 12,
       "title": "Where the Crawdads Sing",
       "author": "Delia Owens",
       "rating": 4.6,
@@ -421,7 +409,6 @@
       ]
     },
     {
-      "id": 13,
       "title": "The Handmaid's Tale",
       "author": "Margaret Atwood",
       "rating": 4.4,
@@ -459,7 +446,6 @@
       ]
     },
     {
-      "id": 14,
       "title": "Becoming",
       "author": "Michelle Obama",
       "rating": 4.8,
@@ -494,7 +480,6 @@
       ]
     },
     {
-      "id": 15,
       "title": "The Hobbit",
       "author": "J.R.R. Tolkien",
       "rating": 4.7,
@@ -529,7 +514,6 @@
       ]
     },
     {
-      "id": 16,
       "title": "Digital Minimalism",
       "author": "Cal Newport",
       "rating": 4.6,
@@ -564,7 +548,6 @@
       ]
     },
     {
-      "id": 17,
       "title": "The Psychology of Money",
       "author": "Morgan Housel",
       "rating": 4.7,
@@ -599,7 +582,6 @@
       ]
     },
     {
-      "id": 18,
       "title": "Circe",
       "author": "Madeline Miller",
       "rating": 4.6,
@@ -634,7 +616,6 @@
       ]
     },
     {
-      "id": 19,
       "title": "The Invisible Man",
       "author": "Ralph Ellison",
       "rating": 4.3,
@@ -669,7 +650,6 @@
       ]
     },
     {
-      "id": 20,
       "title": "Klara and the Sun",
       "author": "Kazuo Ishiguro",
       "rating": 4.2,
