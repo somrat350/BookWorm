@@ -1,9 +1,15 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function ReadingProgress({ progress, totalPages, onProgressUpdate }) {
-  const [currentPage, setCurrentPage] = useState(Math.floor((progress / 100) * totalPages));
+export default function ReadingProgress({
+  progress,
+  totalPages,
+  onProgressUpdate,
+}) {
+  const [currentPage, setCurrentPage] = useState(
+    Math.floor((progress / 100) * totalPages)
+  );
   const [showUpdateForm, setShowUpdateForm] = useState(false);
 
   const handleProgressUpdate = () => {
@@ -20,7 +26,7 @@ export default function ReadingProgress({ progress, totalPages, onProgressUpdate
       <div className="card-body">
         <div className="flex items-center justify-between mb-4">
           <h3 className="card-title text-xl">📊 Reading Progress</h3>
-          <button 
+          <button
             className="btn btn-sm btn-outline"
             onClick={() => setShowUpdateForm(!showUpdateForm)}
           >
@@ -31,12 +37,14 @@ export default function ReadingProgress({ progress, totalPages, onProgressUpdate
         {/* Progress Bar */}
         <div className="mb-6">
           <div className="flex justify-between text-sm mb-2">
-            <span>Page {currentPage} of {totalPages}</span>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
             <span>{progressPercentage}% Complete</span>
           </div>
-          <progress 
-            className="progress progress-primary w-full h-4" 
-            value={progressPercentage} 
+          <progress
+            className="progress progress-primary w-full h-4"
+            value={progressPercentage}
             max="100"
           ></progress>
         </div>
@@ -45,15 +53,21 @@ export default function ReadingProgress({ progress, totalPages, onProgressUpdate
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="stat bg-base-100 rounded-lg">
             <div className="stat-title">Pages Read</div>
-            <div className="stat-value text-primary text-2xl">{currentPage}</div>
+            <div className="stat-value text-primary text-2xl">
+              {currentPage}
+            </div>
           </div>
           <div className="stat bg-base-100 rounded-lg">
             <div className="stat-title">Pages Left</div>
-            <div className="stat-value text-secondary text-2xl">{pagesLeft}</div>
+            <div className="stat-value text-secondary text-2xl">
+              {pagesLeft}
+            </div>
           </div>
           <div className="stat bg-base-100 rounded-lg">
             <div className="stat-title">Progress</div>
-            <div className="stat-value text-accent text-2xl">{progressPercentage}%</div>
+            <div className="stat-value text-accent text-2xl">
+              {progressPercentage}%
+            </div>
           </div>
         </div>
 
@@ -71,17 +85,19 @@ export default function ReadingProgress({ progress, totalPages, onProgressUpdate
                   min="0"
                   max={totalPages}
                   value={currentPage}
-                  onChange={(e) => setCurrentPage(parseInt(e.target.value) || 0)}
+                  onChange={(e) =>
+                    setCurrentPage(parseInt(e.target.value) || 0)
+                  }
                   className="input input-bordered flex-1"
                   placeholder="Enter current page"
                 />
-                <button 
+                <button
                   className="btn btn-primary"
                   onClick={handleProgressUpdate}
                 >
                   Update
                 </button>
-                <button 
+                <button
                   className="btn btn-ghost"
                   onClick={() => setShowUpdateForm(false)}
                 >
@@ -104,13 +120,17 @@ export default function ReadingProgress({ progress, totalPages, onProgressUpdate
             <p className="text-lg">🔥 You&apos;re making excellent progress!</p>
           )}
           {progressPercentage >= 50 && progressPercentage < 75 && (
-            <p className="text-lg">⭐ More than halfway there! You&apos;re doing amazing!</p>
+            <p className="text-lg">
+              ⭐ More than halfway there! You&apos;re doing amazing!
+            </p>
           )}
           {progressPercentage >= 75 && progressPercentage < 100 && (
             <p className="text-lg">🎯 Almost finished! The ending awaits!</p>
           )}
           {progressPercentage === 100 && (
-            <p className="text-lg">🎉 Congratulations! You&apos;ve completed this book!</p>
+            <p className="text-lg">
+              🎉 Congratulations! You&apos;ve completed this book!
+            </p>
           )}
         </div>
       </div>

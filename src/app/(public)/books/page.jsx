@@ -6,9 +6,8 @@ import Pagination from "@/components/public/books/Pagination";
 import SearchBar from "@/components/public/books/SearchBar";
 import ShowAllBooks from "@/components/public/books/ShowAllBooks";
 import Sort from "@/components/public/books/Sort";
-import { dbConnect } from "@/lib/dbConnect";
+import { booksCollection } from "@/lib/dbConnect";
 
-const booksCollection = await dbConnect("books");
 const fetchBooks = async (genre, page, searchTerm, sortBy) => {
   const limit = 8;
   const skip = (page - 1) * limit;

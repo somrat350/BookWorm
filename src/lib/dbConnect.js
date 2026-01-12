@@ -9,7 +9,9 @@ const client = new MongoClient(process.env.MONGO_URI, {
   },
 });
 
-export const dbConnect = async (collection) => {
+const connectCollection = async (collection) => {
   const db = process.env.DB_NAME;
   return await client.db(db).collection(collection);
 };
+export const booksCollection = await connectCollection("books");
+export const usersCollection = await connectCollection("users");

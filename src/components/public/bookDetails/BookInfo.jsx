@@ -3,7 +3,7 @@ export default function BookInfo({ book }) {
     <div className="card bg-base-100 shadow-lg">
       <div className="card-body">
         <h2 className="card-title text-2xl mb-6">📖 About This Book</h2>
-        
+
         {/* Full Description */}
         <div className="prose prose-lg max-w-none mb-8">
           <p className="text-base leading-relaxed">
@@ -17,7 +17,10 @@ export default function BookInfo({ book }) {
             <h3 className="text-xl font-bold mb-4">💭 Notable Quotes</h3>
             <div className="space-y-4">
               {book.quotes.map((quote, index) => (
-                <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-lg">
+                <blockquote
+                  key={index}
+                  className="border-l-4 border-primary pl-4 italic text-lg"
+                >
                   &ldquo;{quote}&rdquo;
                 </blockquote>
               ))}
@@ -31,7 +34,9 @@ export default function BookInfo({ book }) {
             <h3 className="text-xl font-bold mb-4">📚 Available Formats</h3>
             <div className="flex flex-wrap gap-2">
               {book.format.map((format, index) => (
-                <div key={index} className="badge badge-primary badge-lg">{format}</div>
+                <div key={index} className="badge badge-primary badge-lg">
+                  {format}
+                </div>
               ))}
             </div>
           </div>
@@ -45,21 +50,27 @@ export default function BookInfo({ book }) {
               <div className="text-2xl">⏱️</div>
               <div>
                 <div className="font-semibold">Best Reading Time</div>
-                <div className="text-sm opacity-70">Evening or weekend sessions</div>
+                <div className="text-sm opacity-70">
+                  Evening or weekend sessions
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-2xl">🎧</div>
               <div>
                 <div className="font-semibold">Great for Audiobook</div>
-                <div className="text-sm opacity-70">Engaging narration style</div>
+                <div className="text-sm opacity-70">
+                  Engaging narration style
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-2xl">☕</div>
               <div>
                 <div className="font-semibold">Perfect with</div>
-                <div className="text-sm opacity-70">A warm cup of tea or coffee</div>
+                <div className="text-sm opacity-70">
+                  A warm cup of tea or coffee
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
