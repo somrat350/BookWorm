@@ -1,3 +1,4 @@
+import Image from "next/image";
 import BookAction from "./BookAction";
 
 export default function BookHero({ book }) {
@@ -8,7 +9,10 @@ export default function BookHero({ book }) {
           {/* Book Cover */}
           <div className="lg:col-span-2 flex justify-center">
             <div className="relative group">
-              <img
+              <Image
+                // fill
+                width={288}
+                height={400}
                 src={book.image}
                 alt={book.title}
                 className="w-full max-w-80 h-auto rounded-2xl shadow-2xl transition-transform duration-300 group-hover:scale-105"
@@ -41,7 +45,7 @@ export default function BookHero({ book }) {
                         className={`mask mask-star-2 ${
                           i < Math.floor(book.rating)
                             ? "bg-orange-400"
-                            : "bg-gray-300"
+                            : "bg-gray-500"
                         }`}
                         disabled
                       />

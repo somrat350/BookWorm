@@ -6,10 +6,15 @@ import NavLink from "../NavLink";
 import { BiLogOut } from "react-icons/bi";
 import { RxDashboard } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
-import { signOut } from "next-auth/react";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 const DashboardSidebar = () => {
+  const session = useSession();
+  if (session.status === "loading") return;
+  const role = session.data.user.role;
+
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -40,7 +45,6 @@ const DashboardSidebar = () => {
           className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
           data-tip="Dashboard"
         >
-          {/* Dashboard icon */}
           <RxDashboard className="font-bold text-xl" />
           <span className="is-drawer-close:hidden">Dashboard</span>
         </NavLink>
@@ -52,11 +56,25 @@ const DashboardSidebar = () => {
           className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
           data-tip="Profile"
         >
-          {/* Profile icon */}
           <CgProfile className="font-bold text-xl" />
           <span className="is-drawer-close:hidden">Profile</span>
         </NavLink>
       </li>
+      {role === "admin" && (
+        <>
+          <li>
+            <NavLink
+              end
+              href="/dashboard/addNewBook"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
+              data-tip="Add New Book"
+            >
+              <IoMdAddCircleOutline className="font-bold text-xl" />
+              <span className="is-drawer-close:hidden">Add New Book</span>
+            </NavLink>
+          </li>
+        </>
+      )}
       <li>
         <button
           onClick={handleLogout}

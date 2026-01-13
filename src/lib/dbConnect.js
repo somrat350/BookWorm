@@ -14,4 +14,5 @@ const connectCollection = async (collection) => {
   return await client.db(db).collection(collection);
 };
 export const booksCollection = await connectCollection("books");
+export const genresCollection = await connectCollection("genres");
 export const usersCollection = await connectCollection("users");
