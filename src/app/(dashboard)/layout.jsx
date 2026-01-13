@@ -39,7 +39,7 @@ export default function DashboardLayout({ children }) {
                 {/* Navbar */}
                 <DashboardNav />
                 <div className="p-3">
-                  <div className="rounded-2xl p-4 bg-base-200">{children}</div>
+                  <div className="rounded-2xl p-4">{children}</div>
                 </div>
               </div>
 

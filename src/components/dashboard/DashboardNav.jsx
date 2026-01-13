@@ -7,6 +7,9 @@ import { useSession } from "next-auth/react";
 
 const DashboardNav = () => {
   const session = useSession();
+  if (session.status === "loading") {
+    return;
+  }
   return (
     <nav className="navbar w-full backdrop-blur-2xl sticky top-0 z-20 border-b border-primary/30">
       <label

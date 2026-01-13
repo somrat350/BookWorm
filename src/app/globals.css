@@ -8,3 +8,7 @@
 .navLink.active {
   @apply text-secondary;
 }
+
+.dashNavLink.active {
+  @apply text-secondary;
+}
