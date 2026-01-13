@@ -43,7 +43,9 @@ export const authOptions = {
     },
 
     async session({ session, token }) {
-      session.user = token.user;
+      const user = await usersCollection.findOne({ email: token.user.email });
+      delete user.password;
+      session.user = user;
       return session;
     },
   },
