@@ -95,11 +95,14 @@ export default function Header() {
       <NavLink className="navLink" href="/books">
         Books
       </NavLink>
+      <NavLink className="navLink" href="/about">
+        About
+      </NavLink>
+      <NavLink className="navLink" href="/tutorials">
+        Tutorials
+      </NavLink>
       {user && (
         <>
-          <NavLink className="navLink" href="/funding">
-            Funding
-          </NavLink>
           <NavLink className="navLink" href="/dashboard">
             Dashboard
           </NavLink>
