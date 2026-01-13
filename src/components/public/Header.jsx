@@ -16,18 +16,12 @@ import Swal from "sweetalert2";
 import NavLink from "../NavLink";
 import ThemeToggler from "../ThemeToggler";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Header() {
-  const user = {
-    displayName: "somrat",
-    email: "lksjkf",
-    photoURL:
-      "https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?uid=R205531818&ga=GA1.1.891444340.1764987250&semt=ais_hybrid&w=740&q=80",
-  };
-  const userLoading = false;
-  const logout = () => {};
+  const session = useSession();
+  const user = session?.data?.user;
 
-  const role = "admin";
   const [openMenu, setOpenMenu] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
@@ -78,18 +72,20 @@ export default function Header() {
       confirmButtonText: "Yes, logout!",
     }).then((result) => {
       if (result.isConfirmed) {
-        logout().then(() => {
+        signOut().then(() => {
           Swal.fire({
             title: "Logged out!",
             text: "Your has been logged out.",
             icon: "success",
+            showConfirmButton: false,
+            timer: 1500,
           });
         });
       }
     });
   };
 
-  if (userLoading) return;
+  if (session?.status === "loading") return;
 
   const menuLink = (
     <>
@@ -113,13 +109,11 @@ export default function Header() {
   );
 
   const getRoleBadge = () => {
-    switch (role) {
+    switch (user?.role) {
       case "admin":
         return { icon: <FaCrown />, label: "Admin", color: "badge-warning" };
-      case "volunteer":
-        return { icon: <FaHeart />, label: "Volunteer", color: "badge-info" };
       default:
-        return { icon: <FaHeart />, label: "Hero", color: "badge-secondary" };
+        return { icon: <FaHeart />, label: "Reader", color: "badge-secondary" };
     }
   };
 
@@ -140,8 +134,8 @@ export default function Header() {
               <Image
                 width={40}
                 height={40}
-                src={user?.photoURL || "https://via.placeholder.com/150"}
-                alt={user?.displayName || "User"}
+                src={user?.photoUrl}
+                alt={user?.name || "User"}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -161,15 +155,15 @@ export default function Header() {
                     <Image
                       width={64}
                       height={64}
-                      src={user?.photoURL || "https://via.placeholder.com/150"}
-                      alt={user?.displayName || "User"}
+                      src={user?.photoUrl}
+                      alt={user?.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-lg text-base-content">
-                    {user?.displayName || "Blood Hero"}
+                    {user?.name}
                   </h3>
                   <p className="text-sm text-base-content/70 mb-2 break-all">
                     {user?.email}
@@ -182,14 +176,10 @@ export default function Header() {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 gap-3 py-4 border-b border-base-300">
+              <div className="grid py-4 border-b border-base-300">
                 <div className="text-center p-3 bg-base-200 rounded-lg">
                   <div className="text-lg font-bold text-secondary">Active</div>
                   <div className="text-xs text-base-content/60">Status</div>
-                </div>
-                <div className="text-center p-3 bg-base-200 rounded-lg">
-                  <div className="text-lg font-bold text-secondary">Hero</div>
-                  <div className="text-xs text-base-content/60">Level</div>
                 </div>
               </div>
 
@@ -228,7 +218,7 @@ export default function Header() {
               <div className="pt-4 border-t border-base-300">
                 <div className="flex items-center justify-center text-xs text-base-content/60">
                   <HiSparkles className="mr-1" />
-                  Thank you for saving lives!
+                  Thank you for joining us!
                 </div>
               </div>
             </div>

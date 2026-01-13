@@ -22,7 +22,7 @@ export default function ReadingProgress({
   const pagesLeft = totalPages - currentPage;
 
   return (
-    <div className="card bg-gradient-to-r from-primary/10 to-secondary/10 shadow-lg">
+    <div className="card bg-linear-to-r from-primary/10 to-secondary/10 shadow-lg">
       <div className="card-body">
         <div className="flex items-center justify-between mb-4">
           <h3 className="card-title text-xl">📊 Reading Progress</h3>
