@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FiShield, FiUser, FiTrash2, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
 
 export default function ManageUsers() {
   const [users, setUsers] = useState([]);
@@ -31,38 +30,6 @@ export default function ManageUsers() {
     } catch (error) {
       toast.error("Failed to update role");
     }
-  };
-
-  const handleDeleteUser = (userId, username) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert it!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const res = await axios.delete(`/api/users/${userId}`);
-          if (res.data.deletedCount > 0) {
-            toast.success("User deleted from BookWorm");
-            Swal.fire({
-              title: "Deleted!",
-              text: "The user has been deleted.",
-              icon: "success",
-            });
-            fetchUsers();
-          } else {
-            toast.error(res.data.error || "Failed to delete user");
-          }
-        } catch (error) {
-          console.error("Delete Error:", error);
-          toast.error("Internal Server Error");
-        }
-      }
-    });
   };
 
   return (
@@ -92,7 +59,6 @@ export default function ManageUsers() {
               <th>User Info</th>
               <th>Current Role</th>
               <th>Actions</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -137,14 +103,6 @@ export default function ManageUsers() {
                     <option value="user">Normal User</option>
                     <option value="admin">Admin</option>
                   </select>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDeleteUser(user._id, user.name)}
-                    className="btn btn-ghost btn-xs text-error"
-                  >
-                    <FiTrash2 size={16} />
-                  </button>
                 </td>
               </tr>
             ))}

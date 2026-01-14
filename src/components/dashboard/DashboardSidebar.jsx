@@ -8,7 +8,7 @@ import { RxDashboard } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { BsPeople } from "react-icons/bs";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import { IoLibraryOutline } from "react-icons/io5";
+import { IoBookSharp, IoLibraryOutline } from "react-icons/io5";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -73,6 +73,17 @@ const DashboardSidebar = () => {
             >
               <IoMdAddCircleOutline className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Add New Book</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              end
+              href="/dashboard/manageBooks"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
+              data-tip="Manage Books"
+            >
+              <IoBookSharp className="font-bold text-xl" />
+              <span className="is-drawer-close:hidden">Manage Books</span>
             </NavLink>
           </li>
           <li>

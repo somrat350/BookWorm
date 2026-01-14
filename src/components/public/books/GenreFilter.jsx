@@ -3,20 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-// const genres = [
-//   "All",
-//   "Fiction",
-//   "Non-Fiction",
-//   "Science Fiction",
-//   "Fantasy",
-//   "Mystery",
-//   "Romance",
-//   "Thriller",
-//   "Horror",
-//   "Biography",
-//   "History",
-// ];
-
 export default function GenreFilter({ genres }) {
   const router = useRouter();
   const params = useSearchParams();
