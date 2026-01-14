@@ -4,6 +4,7 @@ import "../globals.css";
 import AuthProvider from "@/components/AuthProvider";
 import DashboardNav from "@/components/dashboard/DashboardNav";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function DashboardLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
+          <ToastContainer />
           <div className="min-h-screen">
             <div className="drawer lg:drawer-open">
               <input

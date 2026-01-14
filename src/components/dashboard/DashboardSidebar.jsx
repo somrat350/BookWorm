@@ -6,6 +6,7 @@ import NavLink from "../NavLink";
 import { BiLogOut } from "react-icons/bi";
 import { RxDashboard } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
+import { BsPeople } from "react-icons/bs";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
@@ -71,6 +72,17 @@ const DashboardSidebar = () => {
             >
               <IoMdAddCircleOutline className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Add New Book</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              end
+              href="/dashboard/manageUsers"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
+              data-tip="Manage Users"
+            >
+              <BsPeople className="font-bold text-xl" />
+              <span className="is-drawer-close:hidden">Manage Users</span>
             </NavLink>
           </li>
         </>
