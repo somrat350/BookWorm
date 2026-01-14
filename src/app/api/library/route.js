@@ -1,10 +1,13 @@
+import { authOptions } from "@/lib/authOptions";
 import { usersCollection } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { userId, bookId, status, totalPages } = await req.json();
+    const { userId, bookId, image, title, status, totalPages } =
+      await req.json();
     const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
 
     if (!user) {
@@ -32,6 +35,8 @@ export async function POST(req) {
       // if book not exist the push new book
       const newBookEntry = {
         bookId,
+        image,
+        title,
         status,
         currentPage: 0,
         totalPages: parseInt(totalPages) || 0,
@@ -50,6 +55,45 @@ export async function POST(req) {
     );
   } catch (error) {
     console.error("Library Update Error:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function GET(req) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session.user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+    const books = await usersCollection
+      .find({
+        _id: new ObjectId(session.user._id),
+      })
+      .toArray();
+    return NextResponse.json(books);
+  } catch (error) {
+    console.error("Library Update Error:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function PATCH(req) {
+  try {
+    const { userId, bookId, currentPage } = await req.json();
+
+    await usersCollection.updateOne(
+      {
+        _id: new ObjectId(userId),
+        "library.bookId": bookId,
+      },
+      {
+        $set: { "library.$.currentPage": parseInt(currentPage) },
+      }
+    );
+
+    return NextResponse.json({ message: "Progress updated!" }, { status: 200 });
+  } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

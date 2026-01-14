@@ -34,6 +34,8 @@ export default function BookAction({ book }) {
       const res = await axios.post("/api/library", {
         userId: user._id,
         bookId: book._id,
+        image: book.image,
+        title: book.title,
         status,
         totalPages: book.pages,
       });
