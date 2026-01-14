@@ -1,54 +1,18 @@
 import Link from "next/link";
-import { FaStar } from "react-icons/fa";
 import { BookCard } from "../books/BookCard";
+import { booksCollection } from "@/lib/dbConnect";
 
-export default function FeaturedBooks() {
-  const featuredBooks = [
-    {
-      id: 1,
-      title: "The Midnight Library",
-      author: "Matt Haig",
-      rating: 4.8,
-      reviews: 1250,
-      image:
-        "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop",
-      genre: "Fiction",
-      price: "$12.99",
-    },
-    {
-      id: 2,
-      title: "Atomic Habits",
-      author: "James Clear",
-      rating: 4.9,
-      reviews: 2100,
-      image:
-        "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=300&h=400&fit=crop",
-      genre: "Self-Help",
-      price: "$15.99",
-    },
-    {
-      id: 3,
-      title: "The Seven Moons",
-      author: "Sarah Chen",
-      rating: 4.7,
-      reviews: 890,
-      image:
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop",
-      genre: "Fantasy",
-      price: "$13.99",
-    },
-    {
-      id: 4,
-      title: "Digital Minimalism",
-      author: "Cal Newport",
-      rating: 4.6,
-      reviews: 1560,
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop",
-      genre: "Technology",
-      price: "$14.99",
-    },
-  ];
+const getFeaturedBooks = async () => {
+  const books = await booksCollection
+    .find()
+    .sort({ rating: -1 })
+    .limit(8)
+    .toArray();
+  return books;
+};
+
+export default async function FeaturedBooks() {
+  const featuredBooks = await getFeaturedBooks();
 
   return (
     <section className="py-20 bg-base-100">
