@@ -1,5 +1,3 @@
-"use server";
-
 import BookInfo from "../../../../components/public/bookDetails/BookInfo";
 import ReviewsSection from "../../../../components/public/bookDetails/ReviewsSection";
 import { ObjectId } from "mongodb";
@@ -144,4 +142,14 @@ export default async function BookDetailsPage({ params }) {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const book = await getBooksDetails(id);
+
+  return {
+    title: `${book?.title || "Book"} | BookWorm`,
+    description: book?.description,
+  };
 }

@@ -1,5 +1,3 @@
-"use server";
-
 import { BookCard } from "@/components/public/books/BookCard";
 import GenreFilter from "@/components/public/books/GenreFilter";
 import Pagination from "@/components/public/books/Pagination";
@@ -108,3 +106,8 @@ export default async function Books({ searchParams }) {
     </div>
   );
 }
+
+export const metadata = {
+  title: "Browse Books | BookWorm",
+  description: "Browse our all books in bookWorm.",
+};

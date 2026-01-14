@@ -61,7 +61,7 @@ export default function MyLibrary() {
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="">
       <h1 className="text-3xl font-bold mb-6">My Library 📖</h1>
 
       {/* Tabs for Shelves */}

@@ -20,9 +20,9 @@ export default function AdminDashboard() {
             today.
           </p>
         </div>
-        <button className="btn btn-secondary gap-2">
+        <Link href="/dashboard/addNewBook" className="btn btn-secondary gap-2">
           <FiPlus /> Add New Book
-        </button>
+        </Link>
       </div>
 
       {/* Metric Cards (The "Big Numbers") */}
