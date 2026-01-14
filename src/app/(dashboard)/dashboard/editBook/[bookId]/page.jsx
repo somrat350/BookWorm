@@ -1,5 +1,11 @@
-import { booksCollection } from "@/lib/dbConnect";
+import EditBookForm from "@/components/dashboard/manageBooks/EditBookForm";
+import { booksCollection, genresCollection } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
+
+const genres = await genresCollection
+  .find()
+  .project({ _id: 0, title: 1 })
+  .toArray();
 
 const getBooksDetails = async (id) => {
   const book = await booksCollection.findOne({ _id: new ObjectId(id) });
@@ -9,9 +15,19 @@ const getBooksDetails = async (id) => {
 export default async function EditBook({ params }) {
   const { bookId } = await params;
   const book = await getBooksDetails(bookId);
-  console.log(book);
 
-  return <div></div>;
+  return (
+    <div>
+      <div className="flex flex-col mb-8">
+        <h2 className="text-4xl font-bold text-secondary">Edit Book</h2>
+        <p className="opacity-60">
+          Enter full bibliographic details for the BookWorm database.
+        </p>
+      </div>
+
+      <EditBookForm book={book} genres={genres} />
+    </div>
+  );
 }
 
 export const metadata = {
