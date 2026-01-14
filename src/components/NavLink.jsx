@@ -9,6 +9,7 @@ const NavLink = ({
   className = "",
   activeClass = "",
   end = false,
+  dataTip = "",
 }) => {
   const pathname = usePathname();
 
@@ -20,6 +21,7 @@ const NavLink = ({
     <Link
       href={href}
       className={`${className} ${activeClass} ${isActive ? "active" : ""}`}
+      data-tip={dataTip}
     >
       {children}
     </Link>

@@ -45,7 +45,7 @@ const DashboardSidebar = () => {
           end
           href="/dashboard"
           className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
-          data-tip="Dashboard"
+          dataTip="Dashboard"
         >
           <RxDashboard className="font-bold text-xl" />
           <span className="is-drawer-close:hidden">Dashboard</span>
@@ -56,7 +56,7 @@ const DashboardSidebar = () => {
           end
           href="/dashboard/profile"
           className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
-          data-tip="Profile"
+          dataTip="Profile"
         >
           <CgProfile className="font-bold text-xl" />
           <span className="is-drawer-close:hidden">Profile</span>
@@ -69,7 +69,7 @@ const DashboardSidebar = () => {
               end
               href="/dashboard/addNewBook"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
-              data-tip="Add New Book"
+              dataTip="Add New Book"
             >
               <IoMdAddCircleOutline className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Add New Book</span>
@@ -80,7 +80,7 @@ const DashboardSidebar = () => {
               end
               href="/dashboard/manageBooks"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
-              data-tip="Manage Books"
+              dataTip="Manage Books"
             >
               <IoBookSharp className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Manage Books</span>
@@ -91,7 +91,7 @@ const DashboardSidebar = () => {
               end
               href="/dashboard/manageUsers"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
-              data-tip="Manage Users"
+              dataTip="Manage Users"
             >
               <BsPeople className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Manage Users</span>
@@ -106,7 +106,7 @@ const DashboardSidebar = () => {
               end
               href="/dashboard/myLibrary"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
-              data-tip="My Library"
+              dataTip="My Library"
             >
               <IoLibraryOutline className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">My Library</span>
