@@ -1,4 +1,4 @@
-import { FiEdit2, FiPlus, FiStar } from "react-icons/fi";
+import { FiEdit2, FiEye, FiPlus, FiStar } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
 import { booksCollection } from "@/lib/dbConnect";
@@ -81,10 +81,21 @@ const ManageBooks = () => {
                 </td>
                 <td>
                   <div className="flex justify-center gap-2">
+                    <div className="tooltip" data-tip="View Live">
+                      <Link
+                        href={`/books/${book._id}`}
+                        className="btn btn-square btn-ghost btn-sm text-info border border-base-300 hover:bg-info hover:text-white"
+                      >
+                        <FiEye />
+                      </Link>
+                    </div>
                     <div className="tooltip" data-tip="Edit">
-                      <button className="btn btn-square btn-ghost btn-sm text-secondary border border-base-300">
+                      <Link
+                        href={`/dashboard/editBook/${book._id}`}
+                        className="btn btn-square btn-ghost btn-sm text-secondary border border-base-300 hover:bg-secondary hover:text-white"
+                      >
                         <FiEdit2 />
-                      </button>
+                      </Link>
                     </div>
                     <DeleteBookBtn bookId={book._id.toString()} />
                   </div>
