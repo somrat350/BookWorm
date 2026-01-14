@@ -3,21 +3,21 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const genres = [
-  "All",
-  "Fiction",
-  "Non-Fiction",
-  "Science Fiction",
-  "Fantasy",
-  "Mystery",
-  "Romance",
-  "Thriller",
-  "Horror",
-  "Biography",
-  "History",
-];
+// const genres = [
+//   "All",
+//   "Fiction",
+//   "Non-Fiction",
+//   "Science Fiction",
+//   "Fantasy",
+//   "Mystery",
+//   "Romance",
+//   "Thriller",
+//   "Horror",
+//   "Biography",
+//   "History",
+// ];
 
-export default function GenreFilter() {
+export default function GenreFilter({ genres }) {
   const router = useRouter();
   const params = useSearchParams();
   const [genre, setGenre] = useState(params.get("genre") || "All");
@@ -39,9 +39,10 @@ export default function GenreFilter() {
         value={genre}
         onChange={(e) => setGenre(e.target.value)}
       >
-        {genres.map((genre) => (
-          <option key={genre} value={genre}>
-            {genre === "All" ? "All Genres" : genre}
+        <option value="All">All Genres</option>
+        {genres.map((genre, i) => (
+          <option key={i} value={genre.title}>
+            {genre.title}
           </option>
         ))}
       </select>

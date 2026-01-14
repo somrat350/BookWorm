@@ -33,20 +33,25 @@ const Login = () => {
       return;
     }
     setLoading(true);
-    const res = await signIn("credentials", {
-      ...data,
-      redirect: false,
-    });
-    setLoading(false);
-    if (!res.error) {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Login successful.",
-        showConfirmButton: false,
-        timer: 1500,
+    try {
+      const res = await signIn("credentials", {
+        ...data,
+        redirect: false,
       });
-      router.push(callbackUrl);
+      if (!res.error) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login successful.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        router.push(callbackUrl);
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -133,9 +138,19 @@ const Login = () => {
           )}
           <button
             type="submit"
-            className="bg-secondary text-white p-4 text-xl font-medium rounded-xl w-full cursor-pointer hover:bg-secondary/70 transition"
+            disabled={loading}
+            className={`bg-secondary text-white p-4 text-xl font-medium rounded-xl w-full cursor-pointer flex items-center justify-center gap-2 hover:bg-secondary/70 transition ${
+              loading && "opacity-70 cursor-not-allowed"
+            }`}
           >
-            Login
+            {loading ? (
+              <>
+                <span className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></span>
+                Logging in...
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
       </div>

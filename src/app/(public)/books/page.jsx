@@ -4,7 +4,7 @@ import Pagination from "@/components/public/books/Pagination";
 import SearchBar from "@/components/public/books/SearchBar";
 import ShowAllBooks from "@/components/public/books/ShowAllBooks";
 import Sort from "@/components/public/books/Sort";
-import { booksCollection } from "@/lib/dbConnect";
+import { booksCollection, genresCollection } from "@/lib/dbConnect";
 
 const fetchBooks = async (genre, page, searchTerm, sortBy) => {
   const limit = 8;
@@ -31,6 +31,11 @@ const fetchBooks = async (genre, page, searchTerm, sortBy) => {
   return { books, totalBooks };
 };
 
+const genres = await genresCollection
+  .find()
+  .project({ _id: 0, title: 1 })
+  .toArray();
+
 export default async function Books({ searchParams }) {
   const { genre, page, searchTerm, sort } = await searchParams;
   const { books, totalBooks } = await fetchBooks(genre, page, searchTerm, sort);
@@ -55,7 +60,7 @@ export default async function Books({ searchParams }) {
               </div>
               <div className="stat">
                 <div className="stat-title">Genres</div>
-                <div className="stat-value text-secondary">{1}</div>
+                <div className="stat-value text-secondary">{genres.length}</div>
               </div>
               <div className="stat">
                 <div className="stat-title">Showing</div>
@@ -73,7 +78,7 @@ export default async function Books({ searchParams }) {
             <SearchBar />
           </div>
           <div className="flex justify-between sm:justify-end gap-4">
-            <GenreFilter currentGenre={genre} />
+            <GenreFilter genres={genres} currentGenre={genre} />
             <Sort currentSort={sort} />
           </div>
         </div>

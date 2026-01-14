@@ -56,7 +56,6 @@ const Register = () => {
       formData.append("image", data.image[0]);
 
       const res = await axios.post("/api/auth/register", formData);
-      console.log(res);
 
       if (res.data.success) {
         const loginRes = await signIn("credentials", {
@@ -167,9 +166,19 @@ const Register = () => {
           )}
           <button
             type="submit"
-            className="bg-secondary text-white p-4 text-xl font-medium rounded-xl w-full cursor-pointer hover:bg-secondary/70 transition"
+            disabled={loading}
+            className={`bg-secondary text-white p-4 text-xl font-medium rounded-xl w-full cursor-pointer flex items-center justify-center gap-2 hover:bg-secondary/70 transition ${
+              loading && "opacity-70 cursor-not-allowed"
+            }`}
           >
-            Register
+            {loading ? (
+              <>
+                <span className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></span>
+                Registering in...
+              </>
+            ) : (
+              "Register"
+            )}
           </button>
         </form>
       </div>
