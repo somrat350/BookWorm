@@ -49,7 +49,8 @@ const getBooksDetails = async (id) => {
 
 export default async function BookDetailsPage({ params }) {
   const { id } = await params;
-  const book = await getBooksDetails(id);
+  const originalFormat = await getBooksDetails(id);
+  const book = { ...originalFormat, _id: originalFormat._id.toString() };
 
   return (
     <div className="min-h-screen bg-base-100">

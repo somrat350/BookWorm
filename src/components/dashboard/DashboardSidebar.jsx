@@ -8,6 +8,7 @@ import { RxDashboard } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { BsPeople } from "react-icons/bs";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoLibraryOutline } from "react-icons/io5";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -83,6 +84,21 @@ const DashboardSidebar = () => {
             >
               <BsPeople className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Manage Users</span>
+            </NavLink>
+          </li>
+        </>
+      )}
+      {role === "user" && (
+        <>
+          <li>
+            <NavLink
+              end
+              href="/dashboard/myLibrary"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
+              data-tip="My Library"
+            >
+              <IoLibraryOutline className="font-bold text-xl" />
+              <span className="is-drawer-close:hidden">My Library</span>
             </NavLink>
           </li>
         </>

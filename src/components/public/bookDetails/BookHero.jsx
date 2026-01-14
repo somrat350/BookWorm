@@ -95,7 +95,7 @@ export default function BookHero({ book }) {
             </div>
 
             {/* Action Buttons */}
-            <BookAction />
+            <BookAction book={book} />
           </div>
         </div>
       </div>
