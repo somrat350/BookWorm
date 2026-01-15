@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaHeart, FaStar } from "react-icons/fa";
 
@@ -8,7 +9,9 @@ export const BookCard = ({ book }) => {
       className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
     >
       <figure className="px-4 pt-4">
-        <img
+        <Image
+          height={256}
+          width={256}
           src={book.image}
           alt={book.title}
           className="rounded-xl h-64 w-full object-cover"
@@ -33,7 +36,7 @@ export const BookCard = ({ book }) => {
             ))}
           </div>
           <span className="text-sm font-semibold">{book.rating}</span>
-          <span className="text-xs opacity-60">({book.reviews})</span>
+          <span className="text-xs opacity-60">({book.totalReviews})</span>
         </div>
 
         <div className="card-actions justify-between items-center mt-4">

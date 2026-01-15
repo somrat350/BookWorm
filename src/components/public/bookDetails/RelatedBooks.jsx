@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function RelatedBooks({ books, currentBook }) {
@@ -13,7 +14,9 @@ export default function RelatedBooks({ books, currentBook }) {
             <Link key={book._id} href={`/books/${book._id}`} className="group">
               <div className="card bg-base-200 shadow-md hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
                 <figure className="px-4 pt-4">
-                  <img
+                  <Image
+                    height={192}
+                    width={96}
                     src={book.image}
                     alt={book.title}
                     className="rounded-lg h-48 w-full object-cover"
@@ -49,7 +52,7 @@ export default function RelatedBooks({ books, currentBook }) {
 
                   <div className="flex items-center justify-between mt-4">
                     <span className="text-xs opacity-60">
-                      {book.reviews} reviews
+                      {book.totalReviews} reviews
                     </span>
                     <div className="text-primary font-semibold group-hover:underline">
                       View Details →
