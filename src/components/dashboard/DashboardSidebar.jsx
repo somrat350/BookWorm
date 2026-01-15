@@ -104,7 +104,7 @@ const DashboardSidebar = () => {
           <li>
             <NavLink
               end
-              href="/dashboard/myLibrary"
+              href="/myLibrary"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
               dataTip="My Library"
             >

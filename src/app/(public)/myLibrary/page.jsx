@@ -61,11 +61,11 @@ export default function MyLibrary() {
   };
 
   return (
-    <div className="">
+    <div className="w-full max-w-360 mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6">My Library 📖</h1>
 
       {/* Tabs for Shelves */}
-      <div className="tabs tabs-boxed mb-8 bg-base-200 p-2">
+      <div className="tabs tabs-boxed mb-8 bg-base-200 p-2 rounded-lg">
         {["Want to Read", "Currently Reading", "Read"].map((tab) => (
           <a
             key={tab}

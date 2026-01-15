@@ -101,10 +101,10 @@ export default function Header() {
       <NavLink className="navLink" href="/tutorials">
         Tutorials
       </NavLink>
-      {user && (
+      {user && user.role === "user" && (
         <>
-          <NavLink className="navLink" href="/dashboard">
-            Dashboard
+          <NavLink className="navLink" href="/myLibrary">
+            My Library
           </NavLink>
         </>
       )}

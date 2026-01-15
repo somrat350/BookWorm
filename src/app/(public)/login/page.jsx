@@ -87,12 +87,12 @@ const Login = () => {
           </Link>
         </p>
         {/* Google */}
-        <GoogleBtn />
-        <p className="text-center font-bold text-gray-500 my-4">Or</p>
+        {/* <GoogleBtn /> */}
+        {/* <p className="text-center font-bold text-gray-500 my-4">Or</p> */}
         {/* Form */}
         <form
           onSubmit={handleSubmit(handleLogin)}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-4 mt-6"
         >
           <div className="relative">
             <input
