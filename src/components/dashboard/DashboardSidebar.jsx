@@ -9,6 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import { BsPeople } from "react-icons/bs";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoBookSharp, IoLibraryOutline } from "react-icons/io5";
+import { TbCategory } from "react-icons/tb";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -84,6 +85,17 @@ const DashboardSidebar = () => {
             >
               <IoBookSharp className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Manage Books</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              end
+              href="/dashboard/manageGenres"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
+              dataTip="Manage Genres"
+            >
+              <TbCategory className="font-bold text-xl" />
+              <span className="is-drawer-close:hidden">Manage Genres</span>
             </NavLink>
           </li>
           <li>
