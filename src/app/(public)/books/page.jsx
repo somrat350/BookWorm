@@ -40,7 +40,6 @@ export default async function Books({ searchParams }) {
   const { genre, page, searchTerm, sort } = await searchParams;
   const { books, totalBooks } = await fetchBooks(genre, page, searchTerm, sort);
   const totalPages = Math.ceil(totalBooks / 8);
-  const currentPage = parseInt(page) || 1;
 
   return (
     <div className="min-h-screen bg-base-100">
@@ -93,7 +92,7 @@ export default async function Books({ searchParams }) {
             </div>
             {totalPages > 1 && (
               <div className="mt-12">
-                <Pagination currentPage={currentPage} totalPages={totalPages} />
+                <Pagination totalPages={totalPages} />
               </div>
             )}
           </>

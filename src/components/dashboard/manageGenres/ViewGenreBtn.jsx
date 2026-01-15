@@ -38,7 +38,7 @@ const ViewGenreBtn = ({ genre }) => {
                 <p className="text-[10px] uppercase font-bold opacity-50">
                   Items Linked
                 </p>
-                <p className="text-lg font-mono font-bold">{genre.count}</p>
+                <p className="text-lg font-mono font-bold">{genre.count} books</p>
               </div>
               <div>
                 <p className="text-[10px] uppercase font-bold opacity-50 text-right">

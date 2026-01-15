@@ -21,8 +21,8 @@ const NewGenreForm = () => {
             text: "New Genre Created Successful.",
             icon: "success",
           });
-          reset();
           router.refresh();
+          reset();
         }
       })
       .finally(() => {
