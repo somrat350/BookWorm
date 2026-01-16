@@ -1,5 +1,4 @@
-import { booksCollection, reviewsCollection } from "@/lib/dbConnect";
-import { ObjectId } from "mongodb";
+import { reviewsCollection } from "@/lib/dbConnect";
 
 export async function POST(req) {
   try {

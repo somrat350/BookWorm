@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { signIn, useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { status } = useSession();
@@ -38,6 +39,7 @@ const Login = () => {
         ...data,
         redirect: false,
       });
+
       if (!res.error) {
         Swal.fire({
           position: "top-end",
@@ -48,8 +50,9 @@ const Login = () => {
         });
         router.push(callbackUrl);
       }
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Login failed");
+      if (res.error) {
+        toast.error(res.error);
+      }
     } finally {
       setLoading(false);
     }

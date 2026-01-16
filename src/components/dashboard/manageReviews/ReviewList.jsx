@@ -66,7 +66,7 @@ export default function ReviewList({ reviews }) {
                     onClick={() =>
                       handleAction(review._id, review.bookId, "deleted")
                     }
-                    className="btn btn-sm btn-ghost text-error hover:bg-error/10 gap-2"
+                    className="btn btn-sm text-error hover:bg-error/30 gap-2"
                   >
                     <FiTrash2 /> Delete
                   </button>

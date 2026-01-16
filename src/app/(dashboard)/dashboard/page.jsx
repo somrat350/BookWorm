@@ -1,18 +1,20 @@
-"use client";
 import AdminDashboard from "@/components/dashboard/AdminDashboard";
 import UserDashboard from "@/components/dashboard/UserDashboard";
-import { useSession } from "next-auth/react";
+import { authOptions } from "@/lib/authOptions";
+import { getServerSession } from "next-auth";
 import React from "react";
 
-const DashboardHome = () => {
-  const session = useSession();
-  if (session.status === "loading") {
+const DashboardHome = async () => {
+  const session = await getServerSession(authOptions);
+  console.log(session.user);
+
+  if (!session) {
     return;
   }
-  if (session.data.user.role === "user") {
+  if (session.user.role === "user") {
     return <UserDashboard />;
   }
-  if (session.data.user.role === "admin") {
+  if (session.user.role === "admin") {
     return <AdminDashboard />;
   }
   return <div></div>;

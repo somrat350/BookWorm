@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   FiUsers,
@@ -7,8 +6,27 @@ import {
   FiPlus,
   FiActivity,
 } from "react-icons/fi";
+import ReviewList from "./manageReviews/ReviewList";
+import { reviewsCollection } from "@/lib/dbConnect";
 
-export default function AdminDashboard() {
+const getPendingReviews = async () => {
+  const pendingReviews = await reviewsCollection
+    .find({ status: "pending" })
+    .limit(5)
+    .sort({ createdAt: 1 })
+    .toArray();
+  return pendingReviews.map((pr) => ({
+    _id: pr._id.toString(),
+    bookId: pr.bookId,
+    userName: pr.userName,
+    rating: pr.rating,
+    comment: pr.comment,
+    status: pr.status,
+  }));
+};
+
+export default async function AdminDashboard() {
+  const reviews = await getPendingReviews();
   return (
     <div className="w-full space-y-8">
       {/* Welcome Header */}
@@ -68,57 +86,23 @@ export default function AdminDashboard() {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Recent Reviews Table */}
         <div className="lg:col-span-2 card bg-base-200 shadow-xl overflow-hidden">
-          <div className="card-body p-0">
-            <div className="p-6 flex justify-between items-center">
-              <h2 className="card-title">Recent Review Submissions</h2>
-              <Link href={"/"} className="btn btn-secondary btn-sm">
+          <div className="card-body p-4">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="card-title">Recent 5 Review Submissions</h2>
+              <Link
+                href={"/dashboard/manageReviews"}
+                className="btn btn-secondary btn-sm"
+              >
                 View All
               </Link>
             </div>
-            <div className="overflow-x-auto">
-              <table className="table w-full">
-                <thead className="bg-base-200">
-                  <tr>
-                    <th>User</th>
-                    <th>Book</th>
-                    <th>Rating</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar placeholder">
-                          <div className="bg-neutral text-neutral-content rounded-full w-8">
-                            <Image
-                              width={32}
-                              height={32}
-                              src={
-                                "https://cdn-icons-png.flaticon.com/512/9187/9187604.png"
-                              }
-                              alt="user image"
-                            />
-                          </div>
-                        </div>
-                        <div className="font-bold">John Doe</div>
-                      </div>
-                    </td>
-                    <td>The Great Gatsby</td>
-                    <td>⭐⭐⭐⭐⭐</td>
-                    <td className="flex">
-                      <button className="btn btn-xs btn-success mr-2">
-                        Approve
-                      </button>
-                      <button className="btn btn-xs btn-outline btn-secondary">
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                  {/* Repeat rows as needed */}
-                </tbody>
-              </table>
-            </div>
+            {reviews.length === 0 ? (
+              <div className="alert shadow-lg bg-base-100">
+                <p>No pending reviews to moderate. Great job!</p>
+              </div>
+            ) : (
+              <ReviewList reviews={reviews} />
+            )}
           </div>
         </div>
 
