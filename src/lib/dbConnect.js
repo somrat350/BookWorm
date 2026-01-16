@@ -17,3 +17,4 @@ export const usersCollection = await connectCollection("users");
 export const booksCollection = await connectCollection("books");
 export const genresCollection = await connectCollection("genres");
 export const reviewsCollection = await connectCollection("reviews");
+export const tutorialsCollection = await connectCollection("tutorials");

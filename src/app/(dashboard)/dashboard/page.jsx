@@ -6,10 +6,9 @@ import React from "react";
 
 const DashboardHome = async () => {
   const session = await getServerSession(authOptions);
-  console.log(session.user);
 
   if (!session) {
-    return;
+    redirect("/login");
   }
   if (session.user.role === "user") {
     return <UserDashboard />;
