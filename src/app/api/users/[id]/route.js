@@ -12,7 +12,7 @@ export async function PATCH(req, { params }) {
     const { id } = await params;
     const { role } = await req.json();
 
-    if (session.user._id.toString() === id) {
+    if (session.user._id === id) {
       return Response.json(
         { message: "Cannot change self role" },
         { status: 400 }
@@ -53,7 +53,7 @@ export async function DELETE(req, { params }) {
     }
     const { id } = await params;
 
-    if (session.user._id.toString() === id) {
+    if (session.user._id === id) {
       return Response.json(
         { message: "Cannot delete self account" },
         { status: 400 }

@@ -29,23 +29,38 @@ export const authOptions = {
         );
 
         if (!isPasswordCorrect) throw new Error("Invalid password");
-        delete user.password;
 
-        return user;
+        return {
+          _id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          photoUrl: user.photoUrl,
+        };
       },
     }),
   ],
 
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.user = user;
+      if (user) {
+        token._id = user._id;
+        token.name = user.name;
+        token.email = user.email;
+        token.role = user.role;
+        token.photoUrl = user.photoUrl;
+      }
       return token;
     },
 
     async session({ session, token }) {
-      const user = await usersCollection.findOne({ email: token.user.email });
-      delete user.password;
-      session.user = user;
+      session.user = {
+        _id: token._id,
+        name: token.name,
+        email: token.email,
+        role: token.role,
+        photoUrl: token.photoUrl,
+      };
       return session;
     },
   },

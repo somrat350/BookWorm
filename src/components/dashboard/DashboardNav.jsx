@@ -10,8 +10,10 @@ const DashboardNav = () => {
   if (session.status === "loading") {
     return;
   }
+  console.log(session);
+
   return (
-    <nav className="navbar w-full backdrop-blur-2xl sticky top-0 z-20 border-b border-primary/30">
+    <nav className="navbar w-full backdrop-blur-2xl sticky top-0 z-20 border-b border-secondary/30">
       <label
         htmlFor="my-drawer-4"
         aria-label="open sidebar"

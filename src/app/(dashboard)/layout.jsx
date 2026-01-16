@@ -53,7 +53,7 @@ export default function DashboardLayout({ children }) {
                 </div>
               </div>
 
-              <div className="drawer-side is-drawer-close:overflow-visible border-r border-primary/30 bg-base-300">
+              <div className="drawer-side is-drawer-close:overflow-visible border-r border-secondary/30 bg-base-300">
                 <label
                   htmlFor="my-drawer-4"
                   aria-label="close sidebar"
