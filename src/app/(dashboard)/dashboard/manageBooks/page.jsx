@@ -8,7 +8,7 @@ const books = await booksCollection.find().toArray();
 
 const ManageBooks = () => {
   return (
-    <div className="bg-base-100 min-h-screen">
+    <div className="bg-base-100">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <div>

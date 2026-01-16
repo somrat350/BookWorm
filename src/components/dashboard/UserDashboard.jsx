@@ -9,7 +9,7 @@ import {
 
 export default function UserDashboard() {
   return (
-    <div className="w-full space-y-8 min-h-screen">
+    <div className="w-full space-y-8">
       {/* 1. Welcome & Stats Overview */}
       <section>
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">

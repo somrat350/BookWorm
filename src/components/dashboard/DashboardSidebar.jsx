@@ -12,6 +12,7 @@ import { IoBookSharp, IoLibraryOutline } from "react-icons/io5";
 import { TbCategory } from "react-icons/tb";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { MdOutlineReviews } from "react-icons/md";
 
 const DashboardSidebar = () => {
   const session = useSession();
@@ -96,6 +97,17 @@ const DashboardSidebar = () => {
             >
               <TbCategory className="font-bold text-xl" />
               <span className="is-drawer-close:hidden">Manage Genres</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              end
+              href="/dashboard/manageReviews"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right dashNavLink"
+              dataTip="Manage Reviews"
+            >
+              <MdOutlineReviews className="font-bold text-xl" />
+              <span className="is-drawer-close:hidden">Manage Reviews</span>
             </NavLink>
           </li>
           <li>

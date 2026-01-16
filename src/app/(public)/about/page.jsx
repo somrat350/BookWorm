@@ -39,7 +39,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="bg-base-100 min-h-screen">
+    <div className="bg-base-100">
       {/* Hero Section */}
       <section className="relative py-24 bg-base-200 flex overflow-hidden">
         <div className="w-full max-w-360 mx-auto px-4 relative z-10">

@@ -17,7 +17,7 @@ export const metadata = {
 
 const ContactPage = () => {
   return (
-    <div className="bg-base-100 min-h-screen pb-20">
+    <div className="bg-base-100 pb-20">
       {/* Hero Section - Matching the About Page Boldness */}
       <section className="bg-secondary text-secondary-content py-24 relative overflow-hidden">
         <div className="w-full max-w-360 mx-auto px-4 relative z-10">

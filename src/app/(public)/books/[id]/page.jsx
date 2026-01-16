@@ -1,54 +1,39 @@
 import BookInfo from "../../../../components/public/bookDetails/BookInfo";
 import ReviewsSection from "../../../../components/public/bookDetails/ReviewsSection";
 import { ObjectId } from "mongodb";
-import { booksCollection } from "@/lib/dbConnect";
+import { booksCollection, reviewsCollection } from "@/lib/dbConnect";
 import BookHero from "@/components/public/bookDetails/BookHero";
 import BookStats from "@/components/public/bookDetails/BookStats";
 
-const reviews = [
-  {
-    id: 1,
-    userId: 1,
-    userName: "Sarah Johnson",
-    userAvatar:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face",
-    rating: 5,
-    date: "2024-01-15",
-    title: "A Beautiful Exploration of Life's Possibilities",
-    content:
-      "This book absolutely blew me away. Matt Haig has created something truly special here - a story that makes you think deeply about the choices we make and the lives we could have lived.",
-    likes: 45,
-    helpful: 38,
-    verified: true,
-    readingStatus: "Completed",
-  },
-  {
-    id: 2,
-    userId: 2,
-    userName: "Sarah Johnson",
-    userAvatar:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face",
-    rating: 2,
-    date: "2024-01-15",
-    title: "A Beautiful Exploration of Life's Possibilities",
-    content:
-      "This book absolutely blew me away. Matt Haig has created something truly special here - a story that makes you think deeply about the choices we make and the lives we could have lived.",
-    likes: 45,
-    helpful: 38,
-    verified: true,
-    readingStatus: "Completed",
-  },
-];
+const getBookDetails = async (id) => {
+  const originalFormat = await booksCollection.findOne({
+    _id: new ObjectId(id),
+  });
+  return { ...originalFormat, _id: originalFormat._id.toString() };
+};
 
-const getBooksDetails = async (id) => {
-  const book = booksCollection.findOne({ _id: new ObjectId(id) });
-  return book;
+const getBookReviews = async (id) => {
+  const originalFormat = await reviewsCollection
+    .find({
+      bookId: id,
+      status: "approved",
+    })
+    .sort({ rating: -1 })
+    .limit(10)
+    .toArray();
+  return originalFormat.map((r) => ({
+    _id: r._id.toString(),
+    userName: r.userName,
+    userAvatar: r.userAvatar,
+    comment: r.comment,
+    rating: r.rating,
+  }));
 };
 
 export default async function BookDetailsPage({ params }) {
   const { id } = await params;
-  const originalFormat = await getBooksDetails(id);
-  const book = { ...originalFormat, _id: originalFormat._id.toString() };
+  const book = await getBookDetails(id);
+  const reviews = await getBookReviews(id);
 
   return (
     <div className="min-h-screen bg-base-100">
@@ -65,6 +50,7 @@ export default async function BookDetailsPage({ params }) {
             {/* Reviews Section */}
             <ReviewsSection
               reviews={reviews}
+              bookId={book._id}
               bookRating={book.rating}
               totalReviews={book.totalReviews}
             />
@@ -146,7 +132,7 @@ export default async function BookDetailsPage({ params }) {
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const book = await getBooksDetails(id);
+  const book = await getBookDetails(id);
 
   return {
     title: `${book?.title || "Book"} | BookWorm`,

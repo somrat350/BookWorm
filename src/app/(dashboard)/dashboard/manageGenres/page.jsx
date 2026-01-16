@@ -33,7 +33,7 @@ const ManageGenres = async ({ searchParams }) => {
   const { genres, totalGenres } = await getGenres(currentPage);
   const totalPages = Math.ceil(totalGenres / limit);
   return (
-    <div className="w-full max-w-360 mx-auto min-h-screen">
+    <div className="w-full max-w-360 mx-auto">
       <div className="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold">Genre Management</h1>

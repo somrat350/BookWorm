@@ -99,8 +99,6 @@ export default function BookAction({ book }) {
           </li>
         </ul>
       </div>
-
-      <button className="btn btn-lg w-full">❤️ Add to Favorites</button>
     </div>
   );
 }

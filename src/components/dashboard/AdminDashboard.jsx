@@ -10,7 +10,7 @@ import {
 
 export default function AdminDashboard() {
   return (
-    <div className="w-full min-h-screen space-y-8">
+    <div className="w-full space-y-8">
       {/* Welcome Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
