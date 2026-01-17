@@ -2,6 +2,14 @@ import Link from "next/link";
 import { FiAlertTriangle } from "react-icons/fi";
 import "./globals.css";
 
+export const metadata = {
+  title: "Page Not Found | BookWorm",
+  description: "This Is Page Not Found.",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-100 px-4">
