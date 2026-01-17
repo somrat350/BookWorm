@@ -36,8 +36,6 @@ export default function AddReview({ bookId }) {
     axios
       .post(`/api/reviews`, finalData)
       .then((res) => {
-        console.log(res);
-
         if (res.data.success) {
           Swal.fire({
             title: "Rating success!",

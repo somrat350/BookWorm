@@ -3,7 +3,7 @@ import TutorialsPagination from "@/components/public/tutorials/TutorialsPaginati
 import { tutorialsCollection } from "@/lib/dbConnect";
 import { FiPlayCircle, FiYoutube } from "react-icons/fi";
 
-const limit = 1;
+const limit = 6;
 async function getTutorials(page) {
   const skip = (page - 1) * limit;
   const result = await tutorialsCollection

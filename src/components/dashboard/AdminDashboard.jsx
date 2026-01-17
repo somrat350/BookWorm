@@ -7,7 +7,12 @@ import {
   FiActivity,
 } from "react-icons/fi";
 import ReviewList from "./manageReviews/ReviewList";
-import { reviewsCollection } from "@/lib/dbConnect";
+import {
+  booksCollection,
+  genresCollection,
+  reviewsCollection,
+  usersCollection,
+} from "@/lib/dbConnect";
 
 const getPendingReviews = async () => {
   const pendingReviews = await reviewsCollection
@@ -25,8 +30,22 @@ const getPendingReviews = async () => {
   }));
 };
 
+async function getDataOverview() {
+  const [totalUsers, totalBooks, totalReviews, totalGenres] = await Promise.all(
+    [
+      usersCollection.countDocuments(),
+      booksCollection.countDocuments(),
+      reviewsCollection.countDocuments({ status: "pending" }),
+      genresCollection.countDocuments(),
+    ]
+  );
+  return { totalUsers, totalBooks, totalReviews, totalGenres };
+}
+
 export default async function AdminDashboard() {
   const reviews = await getPendingReviews();
+  const { totalUsers, totalBooks, totalReviews, totalGenres } =
+    await getDataOverview();
   return (
     <div className="w-full space-y-8">
       {/* Welcome Header */}
@@ -50,7 +69,7 @@ export default async function AdminDashboard() {
             <FiUsers size={28} />
           </div>
           <div className="stat-title">Total Readers</div>
-          <div className="stat-value">2,540</div>
+          <div className="stat-value">{totalUsers}</div>
           <div className="stat-desc text-primary">↗︎ 400 (22%) this month</div>
         </div>
 
@@ -59,7 +78,7 @@ export default async function AdminDashboard() {
             <FiBook size={28} />
           </div>
           <div className="stat-title">Total Titles</div>
-          <div className="stat-value">1,200</div>
+          <div className="stat-value">{totalBooks}</div>
           <div className="stat-desc text-secondary">24 added this week</div>
         </div>
 
@@ -68,7 +87,7 @@ export default async function AdminDashboard() {
             <FiMessageSquare size={28} />
           </div>
           <div className="stat-title">Pending Reviews</div>
-          <div className="stat-value">48</div>
+          <div className="stat-value">{totalReviews}</div>
           <div className="stat-desc text-accent">Requires attention</div>
         </div>
 
@@ -77,7 +96,7 @@ export default async function AdminDashboard() {
             <FiActivity size={28} />
           </div>
           <div className="stat-title">Total Genre</div>
-          <div className="stat-value">10</div>
+          <div className="stat-value">{totalGenres}</div>
           <div className="stat-desc text-info">Start to end</div>
         </div>
       </div>

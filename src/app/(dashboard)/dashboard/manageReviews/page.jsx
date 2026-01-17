@@ -1,6 +1,5 @@
 import ReviewList from "@/components/dashboard/manageReviews/ReviewList";
 import { reviewsCollection } from "@/lib/dbConnect";
-import React from "react";
 import { FiShield } from "react-icons/fi";
 
 const getPendingReviews = async () => {

@@ -39,7 +39,6 @@ export default function BookAction({ book }) {
         status,
         totalPages: book.pages,
       });
-      console.log(res);
 
       if (res.status === 200) {
         setCurrentShelf(status);

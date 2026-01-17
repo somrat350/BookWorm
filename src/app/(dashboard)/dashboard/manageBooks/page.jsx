@@ -30,7 +30,7 @@ const ManageBooks = () => {
             href="/dashboard/addNewBook"
             className="btn btn-secondary gap-2"
           >
-            <FiPlus /> <span className="hidden sm:inline">Add New Book</span>
+            <FiPlus /> <span>Add New Book</span>
           </Link>
         </div>
       </div>
